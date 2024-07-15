@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VSGA Trader</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="login" class="container">
+        <h1>VSGA Trader</h1>
+        <label for="username">Usuário:</label>
+        <input type="text" id="username" required>
+        <label for="password">Senha:</label>
+        <input type="password" id="password" required>
+        <button id="loginBtn">Entrar</button>
+    </div>
+
+    <div id="selectPair" class="container" style="display: none;">
+        <h1>Escolha o Par e o Tempo</h1>
+        <label for="pair">Par:</label>
+        <select id="pair">
+            <option value="USD/JPY">USD/JPY</option>
+            <option value="EUR/USD">EUR/USD</option>
+            <option value="GBP/USD">GBP/USD</option>
+            <option value="AUD/USD">AUD/USD</option>
+            <!-- Adicione mais pares aqui -->
+        </select>
+        <label for="timeframe">Tempo:</label>
+        <select id="timeframe">
+            <option value="1min">M1</option>
+            <option value="5min">M5</option>
+            <option value="15min">M15</option>
+            <option value="30min">M30</option>
+            <!-- Adicione mais intervalos de tempo aqui -->
+        </select>
+        <button id="analyzeBtn">Analisar o Mercado</button>
+    </div>
+
+    <div id="analysis" class="container" style="display: none;">
+        <h1>Análise do Mercado</h1>
+        <p id="result">Analisando...</p>
+        <button id="backToSelection">Voltar</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
