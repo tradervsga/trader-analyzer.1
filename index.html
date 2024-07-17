@@ -3,46 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>༒V.S.G.A༒</title>
+    <title>Trader Analyzer</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="login" class="container">
-        <h1>༒V.S.G.A༒</h1>
-        <label for="username">Usuário:</label>
-        <input type="text" id="username" required>
-        <label for="password">Senha:</label>
-        <input type="password" id="password" required>
-        <button id="loginBtn">Entrar</button>
+    <div id="background">
+        <div id="login">
+            <h2>Login</h2>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button id="loginBtn">Login</button>
+        </div>
+        <div id="selectPair" style="display:none;">
+            <h2>Selecione o Par e o Intervalo de Tempo</h2>
+            <select id="pair">
+                <option value="AAPL">AAPL</option>
+                <option value="MSFT">MSFT</option>
+                <option value="GOOGL">GOOGL</option>
+                <option value="USD/JPY">USD/JPY</option>
+                <option value="EUR/USD">EUR/USD</option>
+                <option value="GBP/USD">GBP/USD</option>
+            </select>
+            <select id="timeframe">
+                <option value="1">1 minuto</option>
+                <option value="5">5 minutos</option>
+                <option value="15">15 minutos</option>
+                <option value="30">30 minutos</option>
+                <option value="60">60 minutos</option>
+            </select>
+            <button id="analyzeBtn">Analisar Mercado</button>
+        </div>
+        <div id="analysis" style="display:none;">
+            <h2>Análise de Mercado</h2>
+            <div id="result">Analisando...</div>
+            <button id="backToSelection">Voltar</button>
+        </div>
+        <div id="telegram-support">
+            <a href="https://t.me/+UEnVBLqIFwQwNmE0" target="_blank">Suporte no Telegram</a>
+        </div>
     </div>
-
-    <div id="selectPair" class="container" style="display: none;">
-        <h1>Escolha o Par e o Tempo</h1>
-        <label for="pair">Par:</label>
-        <select id="pair">
-            <option value="USD/JPY">USD/JPY</option>
-            <option value="EUR/USD">EUR/USD</option>
-            <option value="GBP/USD">GBP/USD</option>
-            <option value="AUD/USD">AUD/USD</option>
-            <!-- Adicione mais pares aqui -->
-        </select>
-        <label for="timeframe">Tempo:</label>
-        <select id="timeframe">
-            <option value="1min">M1</option>
-            <option value="5min">M5</option>
-            <option value="15min">M15</option>
-            <option value="30min">M30</option>
-            <!-- Adicione mais intervalos de tempo aqui -->
-        </select>
-        <button id="analyzeBtn">Analisar o Mercado</button>
-    </div>
-
-    <div id="analysis" class="container" style="display: none;">
-        <h1>Análise do Mercado</h1>
-        <p id="result">Analisando...</p>
-        <button id="backToSelection">Voltar</button>
-    </div>
-
     <script src="script.js"></script>
 </body>
 </html>
+
