@@ -1,9 +1,8 @@
-const apiKey = 'ICTY2Q4858NYSW8K';
+const apiKey = 'cqc3e1pr01qmbcu90jo0cqc3e1pr01qmbcu90jog';
 
 const users = [
     { username: 'user1', password: 'pass1' },
     { username: 'user2', password: 'pass2' },
-    // Adicione mais usuários aqui
     { username: 'user3', password: 'pass3' },
     { username: 'user4', password: 'pass4' },
     { username: 'user5', password: 'pass5' },
@@ -25,19 +24,21 @@ const users = [
 ];
 
 async function getStockData(symbol, interval) {
-    const url = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=${interval}&apikey=${apiKey}`;
+    const now = Math.floor(Date.now() / 1000);
+    const oneHourAgo = now - 3600;
+    const url = `https://finnhub.io/api/v1/stock/candle?symbol=${symbol}&resolution=${interval}&from=${oneHourAgo}&to=${now}&token=${apiKey}`;
+
     try {
         const response = await fetch(url);
         const data = await response.json();
 
-        const key = `Time Series (${interval})`;
-        if (!data || !data[key]) {
+        if (data.s !== 'ok') {
             throw new Error('Dados inválidos da API');
         }
 
-        return Object.values(data[key]).map(item => parseFloat(item['4. close']));
+        return data.c; // Closing prices
     } catch (error) {
-        console.error('Erro ao buscar dados da Alpha Vantage:', error);
+        console.error('Erro ao buscar dados da Finnhub:', error);
         return [];
     }
 }
@@ -124,9 +125,9 @@ document.getElementById('analyzeBtn').addEventListener('click', async () => {
     resultElement.innerText = 'Analisando...';
 
     setTimeout(async () => {
-        const analysis = await analyzeMarket(pair.replace('/', ''), interval);
+        const analysis = await analyzeMarket(pair, interval);
         const currentTime = new Date();
-        const minutesToAdd = parseInt(interval.replace('min', ''), 10);
+        const minutesToAdd = parseInt(interval, 10);
         currentTime.setMinutes(currentTime.getMinutes() + minutesToAdd);
 
         resultElement.innerText = `${analysis}\nHora da Entrada: ${currentTime.toLocaleTimeString('pt-BR')}`;
